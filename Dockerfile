@@ -1,10 +1,10 @@
 FROM alpine:3.4
 
-MAINTAINER ilagnev "ilagnev@gmail.com"
+LABEL maintainer "daya.sharma@gmail.com"
 
-ENV NGINX_VERSION 1.11.3
+ENV NGINX_VERSION 1.13.0
 ENV DEVEL_KIT_MODULE_VERSION 0.3.0
-ENV LUA_MODULE_VERSION 0.10.6
+ENV LUA_MODULE_VERSION 0.10.9rc5
 
 ENV LUAJIT_LIB=/usr/lib
 ENV LUAJIT_INC=/usr/include/luajit-2.0
