@@ -1,6 +1,6 @@
 FROM alpine:3.4
 
-LABEL maintainer "daya.sharma@gmail.com"
+LABEL maintainer "shalinda@gmail.com"
 
 ENV NGINX_VERSION 1.13.0
 ENV DEVEL_KIT_MODULE_VERSION 0.3.0
@@ -8,6 +8,7 @@ ENV LUA_MODULE_VERSION 0.10.9rc5
 
 ENV LUAJIT_LIB=/usr/lib
 ENV LUAJIT_INC=/usr/include/luajit-2.0
+ENV LUA_PATH=/etc/nginx/?.lua;/etc/nginx/mylib/?.lua;;
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
@@ -136,7 +137,10 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
+RUN mkdir /etc/nginx/mylib
+COPY common.lua /etc/nginx/mylib
+COPY test1.lua /etc/nginx/
+#COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80 443
 
